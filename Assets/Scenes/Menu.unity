@@ -2578,7 +2578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b717d547547296346a82b96b9c5bd126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: f15fba563c7f8774db72ec3d4d84f84c, type: 2}
   VolumeSlider: {fileID: 1242018759}
 --- !u!1001 &721722791
 PrefabInstance:
