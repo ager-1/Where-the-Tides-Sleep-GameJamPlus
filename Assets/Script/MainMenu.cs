@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -20,7 +21,7 @@ public class MainMenu : MonoBehaviour
 	//Base Menu Code
 	public void StartGame()
 	{
-
+		SceneManager.LoadScene("Prologue");
 	}
 	public void ExitGame()
 	{
