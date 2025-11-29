@@ -3,22 +3,29 @@ using UnityEngine.InputSystem;
 
 public class AnimationStateController : MonoBehaviour
 {
-	// --- NEW SHIP VARIABLES ---
 	[Header("Ship Settings")]
-	public Transform shipTransform; // DRAG YOUR SHIP OBJECT HERE IN INSPECTOR
+	public Transform shipTransform;
 	private Vector3 lastShipPosition;
-	// --------------------------
 
+	[Header("Movement Settings")]
+	public float rotationSpeed = 1.0f; 
+	public float speed = 1f;         
+	public float runMultiplier = 1f;
+
+	// References
 	PlayerInput playerInput;
+	CharacterController characterController;
+	Animator animator;
+	Transform cameraTransform; 
+
+	// Input Variables
 	Vector2 currentMovementInput;
 	Vector3 currentMovement;
 	Vector3 currentRunMovement;
 	bool isRunPressed;
 	bool isMovementPressed;
-	CharacterController characterController;
-	Animator animator;
-	float rotationFactorPerFrame = 15.0f;
-	float runMultiplier = 3.0f;
+
+	// Animation Hashes
 	int isWalkingHash;
 	int isRunningHash;
 
@@ -27,8 +34,19 @@ public class AnimationStateController : MonoBehaviour
 		playerInput = new PlayerInput();
 		animator = GetComponent<Animator>();
 		characterController = GetComponent<CharacterController>();
+
+		if (Camera.main != null)
+		{
+			cameraTransform = Camera.main.transform;
+		}
+		else
+		{
+			Debug.LogError("No Main Camera found! Tag your camera as 'MainCamera'.");
+		}
+
 		isWalkingHash = Animator.StringToHash("isWalking");
 		isRunningHash = Animator.StringToHash("isRunning");
+
 		playerInput.CharacterControls.Move.started += onMovementInput;
 		playerInput.CharacterControls.Move.canceled += onMovementInput;
 		playerInput.CharacterControls.Move.performed += onMovementInput;
@@ -39,20 +57,13 @@ public class AnimationStateController : MonoBehaviour
 
 	void Start()
 	{
-		// Initialize ship position to prevent a big jump on frame 1
-		if (shipTransform != null)
-		{
-			lastShipPosition = shipTransform.position;
-		}
+		if (shipTransform != null) lastShipPosition = shipTransform.position;
 	}
 
 	void onMovementInput(InputAction.CallbackContext context)
 	{
+
 		currentMovementInput = context.ReadValue<Vector2>();
-		currentMovement.x = currentMovementInput.x;
-		currentMovement.z = currentMovementInput.y;
-		currentRunMovement.x = currentMovementInput.x * runMultiplier;
-		currentRunMovement.z = currentMovementInput.y * runMultiplier;
 		isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
 	}
 
@@ -80,14 +91,18 @@ public class AnimationStateController : MonoBehaviour
 	void handleRotation()
 	{
 		Vector3 positionToLookAt;
+
 		positionToLookAt.x = currentMovement.x;
 		positionToLookAt.y = 0.0f;
 		positionToLookAt.z = currentMovement.z;
+
 		Quaternion currentRotation = transform.rotation;
+
 		if (isMovementPressed)
 		{
 			Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-			transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
+
+			transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
 		}
 	}
 
@@ -95,48 +110,48 @@ public class AnimationStateController : MonoBehaviour
 	{
 		bool isWalking = animator.GetBool(isWalkingHash);
 		bool isRunning = animator.GetBool(isRunningHash);
-		if (isMovementPressed && !isWalking)
-		{
-			animator.SetBool(isWalkingHash, true);
-		}
-		else if (!isMovementPressed && isWalking)
-		{
-			animator.SetBool(isWalkingHash, false);
-		}
-		if ((isMovementPressed && isRunPressed) && !isRunning)
-		{
-			animator.SetBool(isRunningHash, true);
-		}
-		else if ((!isMovementPressed || !isRunPressed) && isRunning)
-		{
-			animator.SetBool(isRunningHash, false);
-		}
+
+		if (isMovementPressed && !isWalking) animator.SetBool(isWalkingHash, true);
+		else if (!isMovementPressed && isWalking) animator.SetBool(isWalkingHash, false);
+
+		if ((isMovementPressed && isRunPressed) && !isRunning) animator.SetBool(isRunningHash, true);
+		else if ((!isMovementPressed || !isRunPressed) && isRunning) animator.SetBool(isRunningHash, false);
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
+		Vector3 cameraForward = cameraTransform.forward;
+		Vector3 cameraRight = cameraTransform.right;
+		cameraForward.y = 0;
+		cameraRight.y = 0;
+		cameraForward.Normalize();
+		cameraRight.Normalize();
+
+		Vector3 moveDirection = (cameraForward * currentMovementInput.y + cameraRight * currentMovementInput.x).normalized;
+
+		currentMovement.x = moveDirection.x * speed;
+		currentMovement.z = moveDirection.z * speed;
+		currentRunMovement.x = moveDirection.x * speed * runMultiplier;
+		currentRunMovement.z = moveDirection.z * speed * runMultiplier;
+		// ------------------------------------------------
+
 		handleRotation();
 		handleAnimation();
-		handleGravity(); // You forgot to call this in your original script! I added it back.
+		handleGravity();
 
-		// --- CALCULATE SHIP MOVEMENT ---
 		Vector3 shipMovement = Vector3.zero;
 		if (shipTransform != null)
 		{
 			shipMovement = shipTransform.position - lastShipPosition;
 			lastShipPosition = shipTransform.position;
 		}
-		// -------------------------------
 
 		if (isRunPressed && isMovementPressed)
 		{
-			// Add shipMovement to your running movement
 			characterController.Move((currentRunMovement * Time.deltaTime) + shipMovement);
 		}
 		else
 		{
-			// Add shipMovement to your walking/idle movement
 			characterController.Move((currentMovement * Time.deltaTime) + shipMovement);
 		}
 	}
