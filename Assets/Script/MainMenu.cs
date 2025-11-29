@@ -43,9 +43,9 @@ public class MainMenu : MonoBehaviour
 
 		// Create the 3 specific options with dynamic text
 		List<string> options = new List<string> {
-			$"Fullscreen ({nativeRes.width}x{nativeRes.height})",
-			$"Windowed Maximized ({nativeRes.width}x{nativeRes.height})",
-			$"Medium Windowed ({mediumRes.width}x{mediumRes.height})"
+			$"Fullscreen",
+			$"Windowed",
+			$"Medium"
 		};
 
 		resolutionDropdown.AddOptions(options);
