@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e95edfe3118149528f202109acbcef4, type: 3}
   m_Name: PlayerWeaponInventory
   m_EditorClassIdentifier: 
-  collectedWeapons: []
+  collectedWeapons:
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
