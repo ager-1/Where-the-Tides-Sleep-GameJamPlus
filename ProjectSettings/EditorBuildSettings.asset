@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Day_2Anim.unity
     guid: 0535f95fea29ba84cbf229980c5cd183
   - enabled: 1
+    path: Assets/Scenes/Day2ToDay3.unity
+    guid: e729d59e450fd9847842266a28dc1911
+  - enabled: 1
     path: Assets/Scenes/Day_3.unity
     guid: 31e06d796f94141ab9e4f2534d378854
   - enabled: 1
@@ -56,6 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day_3Anim.unity
     guid: 4c9bea61ec535f6479d566275160a817
+  - enabled: 1
+    path: Assets/Scenes/Day3ToDay4.unity
+    guid: 9575a49312b440b48ba27ec6d33e6edb
   - enabled: 1
     path: Assets/Scenes/Day_4.unity
     guid: 39e6ad63f589240e1b23513f6516b6d2
@@ -71,6 +77,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day_4Aftercrafting_Dead.unity
     guid: 8c7f5e9da2b3a25488b78c3663001444
+  - enabled: 1
+    path: Assets/Scenes/Day_4Anim.unity
+    guid: e9c753d06932e924fb26337dc22c598a
+  - enabled: 1
+    path: Assets/Scenes/Day4ToBoss.unity
+    guid: 854c019d83abe8a4088fb4e08208921d
+  - enabled: 1
+    path: Assets/Scenes/BossFight.unity
+    guid: deabc8a4a1db8b64e904804d8774f9d2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
