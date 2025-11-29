@@ -11025,9 +11025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipTransform: {fileID: 0}
-  rotationSpeed: 5
-  speed: 5
-  runMultiplier: 3
+  rotationSpeed: 1
+  speed: 2
+  runMultiplier: 0.6
   handSpawnPoint: {fileID: 0}
   spearPrefab: {fileID: 0}
   throwSpeed: 40
