@@ -1221,6 +1221,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 432084, guid: 5f6143567e54ef441b3975413c180a92, type: 3}
   m_PrefabInstance: {fileID: 809873451}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1044460337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 486576, guid: 81a28c375b28168439a9968612b54c17, type: 3}
+  m_PrefabInstance: {fileID: 1563943703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1048431369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 494126, guid: 81a28c375b28168439a9968612b54c17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1547430687}
+    - targetCorrespondingSourceObject: {fileID: 486576, guid: 81a28c375b28168439a9968612b54c17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2072117343}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 105566, guid: 81a28c375b28168439a9968612b54c17, type: 3}
       insertIndex: -1
@@ -2249,6 +2257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 105566, guid: 81a28c375b28168439a9968612b54c17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1563943706}
+    - targetCorrespondingSourceObject: {fileID: 105566, guid: 81a28c375b28168439a9968612b54c17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1563943709}
   m_SourcePrefab: {fileID: 100100000, guid: 81a28c375b28168439a9968612b54c17, type: 3}
 --- !u!4 &1563943704 stripped
 Transform:
@@ -2301,6 +2312,35 @@ MonoBehaviour:
   rotationSpeed: 1
   speed: 2
   runMultiplier: 0.6
+  handSpawnPoint: {fileID: 2072117343}
+  spearPrefab: {fileID: 177368, guid: 32789634d30e42c47bfb5eb47db85a88, type: 3}
+  throwForce: 25
+  throwDelay: 0.4
+  recoveryTime: 1
+  spawnRotationOffset: {x: 0, y: 0, z: 0}
+--- !u!95 &1563943708 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9576412, guid: 81a28c375b28168439a9968612b54c17, type: 3}
+  m_PrefabInstance: {fileID: 1563943703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563943709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563943705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7bfbe9bb6638b418921864eef64d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1563943708}
+  handSpawnPoint: {fileID: 2072117343}
+  spearPrefab: {fileID: 177368, guid: 32789634d30e42c47bfb5eb47db85a88, type: 3}
+  throwForce: 25
+  throwDelay: 0.4
+  rotationCorrection: 0
 --- !u!1001 &1666129547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2887,6 +2927,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 440952, guid: db926916daadf5647aa23f6c671db7e4, type: 3}
   m_PrefabInstance: {fileID: 1980335638}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2072117342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072117343}
+  m_Layer: 3
+  m_Name: SpearSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2072117343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072117342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.99144495, y: 0.00000016158442, z: 0.000000013416862, w: -0.13052607}
+  m_LocalPosition: {x: 0, y: 2.2, z: -4.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1044460337}
+  m_LocalEulerAnglesHint: {x: 195, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

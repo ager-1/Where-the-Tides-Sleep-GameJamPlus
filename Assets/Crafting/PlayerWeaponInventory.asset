@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedWeapons:
   - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
+  - {fileID: 11400000, guid: 0e2be1d4f10844954943edc0b967886a, type: 2}
