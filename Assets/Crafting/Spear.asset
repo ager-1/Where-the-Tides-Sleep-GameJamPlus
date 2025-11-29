@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05474b2343a124d2f8e6012610046551, type: 3}
-  m_Name: PlayerWoodInventory
+  m_Script: {fileID: 11500000, guid: 0ca2a4682401e4fdf9c1bfda32ab58ce, type: 3}
+  m_Name: Spear
   m_EditorClassIdentifier: 
-  collectedWood:
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
+  weaponName: Spear
+  weaponPrefab: {fileID: 177368, guid: 32789634d30e42c47bfb5eb47db85a88, type: 3}
