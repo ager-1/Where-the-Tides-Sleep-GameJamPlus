@@ -893,7 +893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLives: 3
-  gameOverSceneName: Day_1
+  gameOverSceneName: Day_1Afterfishing
   inventory: {fileID: 11400000, guid: 52cd2c0562a9b463ca63e0c4fbd495bf, type: 2}
   currentFish: {fileID: 11400000, guid: 11d18bc8a623f4bd89e7e6a891026262, type: 2}
   trackArea: {fileID: 2069715306}

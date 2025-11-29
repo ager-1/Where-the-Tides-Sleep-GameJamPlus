@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81eaacf32ae224222aa8f07541ddc961, type: 3}
   m_Name: MyInventory
   m_EditorClassIdentifier: 
-  caughtFish: []
+  caughtFish:
+  - {fileID: 11400000, guid: 11d18bc8a623f4bd89e7e6a891026262, type: 2}
+  - {fileID: 11400000, guid: 11d18bc8a623f4bd89e7e6a891026262, type: 2}

@@ -1,10 +1,24 @@
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // Required for loading scenes
 
 public class SceneLoader : MonoBehaviour
 {
-    public void SceneLoading()
+    [Header("Settings")]
+    // Type the EXACT name of your fishing scene here in the Inspector
+    public string sceneName = "FishingScene";
+
+    // Link this function to your Button
+    public void LoadTargetScene()
     {
-        SceneManager.LoadScene("Day_1");
+        Debug.Log("Loading Scene: " + sceneName);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    // Optional: A function to quit the game
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit!");
     }
 }
