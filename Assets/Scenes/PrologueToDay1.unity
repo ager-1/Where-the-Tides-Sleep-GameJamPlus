@@ -481,7 +481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 5
-  nextSceneName: Day_1
+  goodSceneName: Day_1
+  badSceneName: Day_1
+  playerInventory: {fileID: 11400000, guid: 52cd2c0562a9b463ca63e0c4fbd495bf, type: 2}
 --- !u!4 &1385239612
 Transform:
   m_ObjectHideFlags: 0

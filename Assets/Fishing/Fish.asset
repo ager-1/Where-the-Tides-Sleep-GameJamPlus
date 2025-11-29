@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: Bob
   fishModelPrefab: {fileID: 150596, guid: 24a3398e60ffa3a46afcb1d10229a496, type: 3}
-  movementSpeed: 1.11
+  movementSpeed: 2.62
   zoneSize: 0.25
