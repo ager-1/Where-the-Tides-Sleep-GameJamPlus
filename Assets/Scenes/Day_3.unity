@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dc8f2cda2b1c24ebc179ba2a3b466f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Fishing
+  sceneName: FishingDay3
 --- !u!4 &1236225082
 Transform:
   m_ObjectHideFlags: 0
