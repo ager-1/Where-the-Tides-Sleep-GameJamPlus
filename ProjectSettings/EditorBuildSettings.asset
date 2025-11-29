@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Day_2Aftercrafting.unity
     guid: 8e99234aac087184a828e95d871dd1f0
   - enabled: 1
+    path: Assets/Scenes/Day_2Anim.unity
+    guid: 0535f95fea29ba84cbf229980c5cd183
+  - enabled: 1
     path: Assets/Scenes/Day_3.unity
     guid: 31e06d796f94141ab9e4f2534d378854
   - enabled: 1
@@ -51,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Day_3Afterfishing.unity
     guid: 0b471f3c0b1e448fda57fb2046f8f26a
   - enabled: 1
+    path: Assets/Scenes/Day_3Anim.unity
+    guid: 4c9bea61ec535f6479d566275160a817
+  - enabled: 1
     path: Assets/Scenes/Day_4.unity
     guid: 39e6ad63f589240e1b23513f6516b6d2
   - enabled: 1
@@ -59,6 +65,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day_4Aftercrafting.unity
     guid: 2acab7730197341609ed5400d1de6dfa
+  - enabled: 1
+    path: Assets/Scenes/Day_4_Dead.unity
+    guid: 6575411190bf4e24d8a5ee62cf71d34a
+  - enabled: 1
+    path: Assets/Scenes/Day_4Aftercrafting_Dead.unity
+    guid: 8c7f5e9da2b3a25488b78c3663001444
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
