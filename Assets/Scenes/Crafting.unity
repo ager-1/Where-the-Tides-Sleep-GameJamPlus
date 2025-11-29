@@ -731,7 +731,7 @@ MonoBehaviour:
   woodData: {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
   spawnRate: 1.7
   maxLives: 3
-  gameOverScene: GameOverScene
+  gameOverScene: Day_2Aftercrafting
   scoreText: {fileID: 511623842}
   livesText: {fileID: 1879750121}
 --- !u!4 &1548617882
