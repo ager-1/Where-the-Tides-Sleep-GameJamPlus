@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Day_1Afterfishing.unity
     guid: ca3b171eec0cd466c9da35f38f33c464
   - enabled: 1
+    path: Assets/Scenes/Day_1Anim.unity
+    guid: 576fd21ff3296814c942c353dfff3a87
+  - enabled: 1
+    path: Assets/Scenes/Day1ToDay2.unity
+    guid: cf4c63ddc497cac4f93ff2675ec36eec
+  - enabled: 1
     path: Assets/Scenes/Day_2.unity
     guid: 145c1d6c3e82c47d38ab093b74b20ae7
   - enabled: 1
