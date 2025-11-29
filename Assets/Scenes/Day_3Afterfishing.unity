@@ -1634,8 +1634,8 @@ MonoBehaviour:
   morningLightIntensity: 1
   nightLightIntensity: 0.1
   morningDuration: 0
-  nightDuration: 120
-  nextSceneName: Day_2
+  nightDuration: 5
+  nextSceneName: Day_4
 --- !u!4 &1153555735
 Transform:
   m_ObjectHideFlags: 0

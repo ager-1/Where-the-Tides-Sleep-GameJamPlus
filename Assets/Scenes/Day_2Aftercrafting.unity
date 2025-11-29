@@ -1642,6 +1642,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 440952, guid: db926916daadf5647aa23f6c671db7e4, type: 3}
   m_PrefabInstance: {fileID: 1394888105}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1481028385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481028387}
+  - component: {fileID: 1481028386}
+  m_Layer: 0
+  m_Name: DayNightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1481028386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481028385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d493dc8b82e42489668ef72ef21fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morningSkybox: {fileID: 2100000, guid: 8162517b6ec2309499f99e303b29f146, type: 2}
+  nightSkybox: {fileID: 2100000, guid: c1c961cbd00909b45b34d97fd7df5cbf, type: 2}
+  morningFogColor: {r: 0.83921576, g: 0.8117648, b: 0.72156864, a: 1}
+  nightFogColor: {r: 0.09803922, g: 0.28235295, b: 0.5019608, a: 1}
+  directionalLight: {fileID: 1950488696}
+  morningLightIntensity: 1
+  nightLightIntensity: 0.1
+  morningDuration: 0
+  nightDuration: 120
+  nextSceneName: Day_3
+--- !u!4 &1481028387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481028385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1992548, y: 4.5546618, z: -859.1514}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547430686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,8 +2521,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285478664
-  m_fontColor: {r: 0.030704875, g: 0.21431772, b: 0.4339623, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2941,3 +2995,4 @@ SceneRoots:
   - {fileID: 1820295410}
   - {fileID: 296790948}
   - {fileID: 22027769}
+  - {fileID: 1481028387}
