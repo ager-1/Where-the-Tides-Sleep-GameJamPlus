@@ -489,6 +489,15 @@ MonoBehaviour:
   rotationSpeed: 1
   speed: 2
   runMultiplier: 0.6
+  handSpawnPoint: {fileID: 0}
+  spearPrefab: {fileID: 0}
+  throwSpeed: 40
+  throwDelay: 0.4
+  recoveryTime: 1
+  spawnRotationOffset: {x: 90, y: 0, z: 0}
+  maxSpears: 10
+  gameOverSceneName: GameOver
+  movementLocked: 0
 --- !u!1001 &254615027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1634,8 +1643,8 @@ MonoBehaviour:
   morningLightIntensity: 1
   nightLightIntensity: 0.1
   morningDuration: 0
-  nightDuration: 5
-  nextSceneName: Day_4
+  nightDuration: 60
+  nextSceneName: Day3ToDay4
 --- !u!4 &1153555735
 Transform:
   m_ObjectHideFlags: 0

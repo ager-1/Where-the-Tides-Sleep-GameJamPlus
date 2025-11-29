@@ -7962,9 +7962,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipTransform: {fileID: 0}
-  rotationSpeed: 5
-  speed: 5
-  runMultiplier: 3
+  rotationSpeed: 2
+  speed: 2
+  runMultiplier: 1
   handSpawnPoint: {fileID: 0}
   spearPrefab: {fileID: 0}
   throwSpeed: 40
@@ -19222,7 +19222,6 @@ SceneRoots:
   - {fileID: 1838181748}
   - {fileID: 2064808137}
   - {fileID: 941730598}
-  - {fileID: 796562283}
   - {fileID: 2002274718}
   - {fileID: 1730812095}
   - {fileID: 813346224}
@@ -19238,3 +19237,4 @@ SceneRoots:
   - {fileID: 118524241}
   - {fileID: 1780372749}
   - {fileID: 2045620934}
+  - {fileID: 796562283}

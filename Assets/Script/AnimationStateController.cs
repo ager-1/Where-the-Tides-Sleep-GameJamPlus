@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement; // Needed for Game Over
 
 public class AnimationStateController : MonoBehaviour
 {
@@ -15,17 +16,27 @@ public class AnimationStateController : MonoBehaviour
 	public float speed = 5.0f;
 	public float runMultiplier = 3.0f;
 
-	// --- COMBAT VARIABLES (NEW) ---
+	// --- COMBAT VARIABLES ---
 	[Header("Combat Settings")]
-	public Transform handSpawnPoint; // Drag "SpearSpawnPoint" here
-	public GameObject spearPrefab;   // Drag "Spear" prefab here
-	public float throwForce = 25f;
-	public float throwDelay = 0.4f;  // Time before spear appears
-	public float recoveryTime = 1.0f; // Time stuck after throwing
-	public Vector3 spawnRotationOffset = new Vector3(0, 0, 0); // Fixes rotation
+	public Transform handSpawnPoint;
+	public GameObject spearPrefab;
+	public float throwSpeed = 40f;   // Increased from 20 to 40 for more speed
+	public float throwDelay = 0.4f;
+	public float recoveryTime = 1.0f;
+
+	[Header("Rotation Fix")]
+	[Tooltip("If spear stands up, try (90, 0, 0). If backwards, try (0, 180, 0)")]
+	public Vector3 spawnRotationOffset = new Vector3(90, 0, 0);
+
+	// --- NEW: BOSS BATTLE SETTINGS ---
+	[Header("Boss Battle Settings")]
+	public int maxSpears = 10;
+	private int spearsThrown = 0;
+	public string gameOverSceneName = "GameOver"; // Name of your lose scene
+												  // ---------------------------------
 
 	// Internal States
-	private bool movementLocked = false;
+	[HideInInspector] public bool movementLocked = false;
 	private bool isThrowing = false;
 
 	// References
@@ -44,7 +55,7 @@ public class AnimationStateController : MonoBehaviour
 	// Animator Hashes
 	int isWalkingHash;
 	int isRunningHash;
-	int throwHash; // NEW
+	int throwHash;
 
 	void Awake()
 	{
@@ -54,26 +65,23 @@ public class AnimationStateController : MonoBehaviour
 
 		if (Camera.main != null) cameraTransform = Camera.main.transform;
 
-		// Setup IDs for faster animation
 		isWalkingHash = Animator.StringToHash("isWalking");
 		isRunningHash = Animator.StringToHash("isRunning");
-		throwHash = Animator.StringToHash("throw"); // NEW
+		throwHash = Animator.StringToHash("throw");
 
-		// --- MOVEMENT INPUTS ---
 		playerInput.CharacterControls.Move.started += onMovementInput;
 		playerInput.CharacterControls.Move.canceled += onMovementInput;
 		playerInput.CharacterControls.Move.performed += onMovementInput;
 		playerInput.CharacterControls.Run.started += onRun;
 		playerInput.CharacterControls.Run.canceled += onRun;
 		playerInput.CharacterControls.Run.performed += onRun;
-
-		// --- COMBAT INPUTS (NEW) ---
 		playerInput.CharacterControls.Throw.started += OnThrow;
 	}
 
 	void Start()
 	{
 		if (shipTransform != null) lastShipPosition = shipTransform.position;
+		Debug.Log("Spears Remaining: " + maxSpears);
 	}
 
 	// --- INPUT EVENTS ---
@@ -93,21 +101,54 @@ public class AnimationStateController : MonoBehaviour
 
 	void OnThrow(InputAction.CallbackContext context)
 	{
-		// 1. Check if we can throw
+		// 1. Check Ammo
+		if (spearsThrown >= maxSpears)
+		{
+			Debug.Log("Out of Spears!");
+			return;
+		}
+
 		if (isThrowing || movementLocked) return;
 
-		// 2. Lock everything
+		// 2. Increment Counter
+		spearsThrown++;
+		Debug.Log($"Throwing Spear {spearsThrown}/{maxSpears}");
+
+		// 3. Start Throw Logic
 		isThrowing = true;
 		movementLocked = true;
-
-		// 3. Trigger Animation
 		animator.SetTrigger(throwHash);
-
-		// 4. Start the physical spawn routine
 		StartCoroutine(SpawnSpearRoutine());
+
+		// 4. Check for Game Over Condition (If this was the last spear)
+		if (spearsThrown >= maxSpears)
+		{
+			StartCoroutine(CheckGameOverSequence());
+		}
 	}
 
-	// --- LOGIC LOOP ---
+	// New Coroutine to handle Game Over delay
+	IEnumerator CheckGameOverSequence()
+	{
+		Debug.Log("Last spear thrown! Waiting for impact...");
+		// Wait 5.5 seconds (slightly longer than spear lifetime) to see if it hits
+		yield return new WaitForSeconds(5.5f);
+
+		// Check if Shark still exists
+		GameObject shark = GameObject.FindGameObjectWithTag("Enemy");
+		if (shark != null)
+		{
+			Debug.Log("GAME OVER: You ran out of spears and the Shark is still alive.");
+
+			// Uncomment this when you are ready to use the scene
+			// SceneManager.LoadScene(gameOverSceneName); 
+		}
+		else
+		{
+			Debug.Log("You used all spears, but the Shark is dead. You Win!");
+		}
+	}
+
 	void Update()
 	{
 		HandleMovementCalculation();
@@ -123,7 +164,6 @@ public class AnimationStateController : MonoBehaviour
 	{
 		if (!movementLocked && cameraTransform != null)
 		{
-			// Move relative to Camera
 			Vector3 cameraForward = cameraTransform.forward;
 			Vector3 cameraRight = cameraTransform.right;
 			cameraForward.y = 0;
@@ -140,7 +180,6 @@ public class AnimationStateController : MonoBehaviour
 		}
 		else
 		{
-			// If locked, stop X/Z movement immediately
 			currentMovement.x = 0;
 			currentMovement.z = 0;
 			currentRunMovement.x = 0;
@@ -168,7 +207,6 @@ public class AnimationStateController : MonoBehaviour
 
 	void handleAnimation()
 	{
-		// If locked (Throwing), force walk/run to false
 		if (movementLocked)
 		{
 			animator.SetBool(isWalkingHash, false);
@@ -204,7 +242,6 @@ public class AnimationStateController : MonoBehaviour
 
 	void ApplyFinalMovement()
 	{
-		// Calculate Ship Offset
 		Vector3 shipMovement = Vector3.zero;
 		if (shipTransform != null)
 		{
@@ -212,7 +249,6 @@ public class AnimationStateController : MonoBehaviour
 			lastShipPosition = shipTransform.position;
 		}
 
-		// Apply Player Move + Ship Move
 		if (isRunPressed && isMovementPressed)
 		{
 			characterController.Move((currentRunMovement * Time.deltaTime) + shipMovement);
@@ -226,41 +262,41 @@ public class AnimationStateController : MonoBehaviour
 	// --- COMBAT ROUTINE ---
 	IEnumerator SpawnSpearRoutine()
 	{
-		// Wait for arm to swing forward
 		yield return new WaitForSeconds(throwDelay);
 
 		if (spearPrefab != null && handSpawnPoint != null)
 		{
-			// 1. Spawn
-			GameObject currentSpear = Instantiate(spearPrefab, handSpawnPoint.position, transform.rotation);
+			Vector3 throwDirection = transform.forward;
 
-			// 2. Fix Rotation (Apply your offset here)
+			// Spawn looking forward
+			GameObject currentSpear = Instantiate(spearPrefab, handSpawnPoint.position, Quaternion.LookRotation(throwDirection));
+
+			// Fix Rotation
 			currentSpear.transform.Rotate(spawnRotationOffset);
 
-			// 3. Throw Physics
+			// Throw Physics
 			Rigidbody rb = currentSpear.GetComponent<Rigidbody>();
 			if (rb != null)
 			{
-				// Throw slightly up and forward relative to player
-				Vector3 throwDirection = transform.forward + Vector3.up * 0.1f;
-				rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+				rb.isKinematic = false;
+
+				// Increased Momentum: Doubled the speed variable above and slightly increased the arc
+				// This ensures it travels further and faster
+				Vector3 finalVelocity = (throwDirection + Vector3.up * 0.08f).normalized * throwSpeed;
+				rb.linearVelocity = finalVelocity;
 			}
 		}
+		else
+		{
+			Debug.LogError("❌ ERROR: Hand Spawn Point or Spear Prefab is missing in AnimationStateController!");
+		}
 
-		// Wait for animation to finish before unlocking
 		yield return new WaitForSeconds(recoveryTime);
 
-		// Unlock everything
 		movementLocked = false;
 		isThrowing = false;
 	}
 
-	void OnEnable()
-	{
-		playerInput.CharacterControls.Enable();
-	}
-	void OnDisable()
-	{
-		playerInput.CharacterControls.Disable();
-	}
+	void OnEnable() { playerInput.CharacterControls.Enable(); }
+	void OnDisable() { playerInput.CharacterControls.Disable(); }
 }

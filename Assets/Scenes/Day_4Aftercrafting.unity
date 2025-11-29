@@ -1343,6 +1343,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583920928}
   m_CullTransparentMesh: 1
+--- !u!1 &607180432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607180434}
+  - component: {fileID: 607180433}
+  m_Layer: 0
+  m_Name: DayNightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &607180433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607180432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d493dc8b82e42489668ef72ef21fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morningSkybox: {fileID: 2100000, guid: 8162517b6ec2309499f99e303b29f146, type: 2}
+  nightSkybox: {fileID: 2100000, guid: c1c961cbd00909b45b34d97fd7df5cbf, type: 2}
+  morningFogColor: {r: 0.83921576, g: 0.8117648, b: 0.72156864, a: 1}
+  nightFogColor: {r: 0.09803922, g: 0.28235295, b: 0.5019608, a: 1}
+  directionalLight: {fileID: 0}
+  morningLightIntensity: 1
+  nightLightIntensity: 0.1
+  morningDuration: 0
+  nightDuration: 60
+  nextSceneName: Day4ToBoss
+--- !u!4 &607180434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607180432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1992548, y: 4.5546618, z: -859.1514}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637261745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2754,15 @@ MonoBehaviour:
   rotationSpeed: 1
   speed: 2
   runMultiplier: 0.6
+  handSpawnPoint: {fileID: 0}
+  spearPrefab: {fileID: 0}
+  throwSpeed: 40
+  throwDelay: 0.4
+  recoveryTime: 1
+  spawnRotationOffset: {x: 90, y: 0, z: 0}
+  maxSpears: 10
+  gameOverSceneName: GameOver
+  movementLocked: 0
 --- !u!1001 &1666129547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3451,3 +3514,4 @@ SceneRoots:
   - {fileID: 22027769}
   - {fileID: 1724922457}
   - {fileID: 1968429261}
+  - {fileID: 607180434}
