@@ -9,10 +9,18 @@ public class SpearProjectile : MonoBehaviour
 
 	void Start()
 	{
+		// 1. Destroy self after 'lifeTime' seconds
 		Destroy(gameObject, lifeTime);
 
-		// 1. FIND PLAYER TO IGNORE
-		// This ensures the spear doesn't shove the player sideways when spawning
+		// Ensure physics is ON
+		Rigidbody rb = GetComponent<Rigidbody>();
+		if (rb != null)
+		{
+			rb.isKinematic = false;
+			rb.useGravity = true;
+		}
+
+		// 2. IGNORE PLAYER
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		if (player != null)
 		{
@@ -24,33 +32,52 @@ public class SpearProjectile : MonoBehaviour
 				Physics.IgnoreCollision(playerCollider, myCollider);
 			}
 		}
-		else
-		{
-			Debug.LogError("Spear could not find object with tag 'Player'! Did you forget to tag your character?");
-		}
 	}
 
-	void OnCollisionEnter(Collision collision)
+	// TRIGGER EVENT (Spear is a Trigger, so it passes through things)
+	void OnTriggerEnter(Collider other)
 	{
-		// 2. DEBUG WHAT WE HIT
-		// If the spear stops instantly, check the Console to see what it hit
-		Debug.Log("Spear hit object: " + collision.gameObject.name);
+		// Ignore Player and non-Enemies (Pass through walls/floor)
+		if (other.CompareTag("Player")) return;
+		if (!other.CompareTag("Enemy")) return;
 
 		if (hasHit) return;
-		if (collision.gameObject.CompareTag("Player")) return;
-
 		hasHit = true;
 
-		// 3. STOP PHYSICS
+		// --- DEAL DAMAGE TO SHARK ---
+		SharkBoss shark = other.GetComponent<SharkBoss>();
+		if (shark != null)
+		{
+			shark.TakeDamage();
+		}
+		// ---------------------------
+
+		Debug.Log("Spear stabbed Enemy: " + other.name);
+
+		// 3. STOP PHYSICS (Freeze position)
 		Rigidbody rb = GetComponent<Rigidbody>();
 		if (rb != null)
 		{
 			rb.isKinematic = true;
+			rb.useGravity = false;
 			rb.linearVelocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;
 		}
 
 		// 4. STICK TO TARGET
-		transform.SetParent(collision.transform);
+		transform.SetParent(other.transform);
+	}
+
+	// Optional: Keeps the spear pointing forward as it flies (Arc)
+	void FixedUpdate()
+	{
+		if (!hasHit)
+		{
+			Rigidbody rb = GetComponent<Rigidbody>();
+			if (rb != null && rb.linearVelocity.sqrMagnitude > 1f)
+			{
+				transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+			}
+		}
 	}
 }

@@ -107,7 +107,7 @@ public class MainMenu : MonoBehaviour
 	}
 
 	// --- BASE LOGIC ---
-	public void StartGame() => SceneManager.LoadScene("Prologue");
+	public void StartGame() => SceneManager.LoadScene("MenuToPrologueTransition");
 	public void ExitGame() => Application.Quit();
 
 	// --- VOLUME LOGIC ---
