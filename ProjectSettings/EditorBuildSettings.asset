@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Prologue.unity
     guid: f7062b51550a56f48a97ecb2c2aedf4f
   - enabled: 1
+    path: Assets/Scenes/PrologueAnim.unity
+    guid: d0e2cc108b700594aac3924ec4979059
+  - enabled: 1
+    path: Assets/Scenes/PrologueToDay1.unity
+    guid: ceac9e177347c3f49b3879aa0243d32e
+  - enabled: 1
     path: Assets/Scenes/Day_1.unity
     guid: f5413ffb09108479485d914ae0d6b74c
   - enabled: 1
