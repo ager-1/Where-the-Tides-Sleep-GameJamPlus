@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 64511812701788638}
   - component: {fileID: 8707436011368239888}
   - component: {fileID: 1942372979730479002}
+  - component: {fileID: 2251142523068572643}
   m_Layer: 0
   m_Name: SM_Wep_Boarding_Spear_01
   m_TagString: Untagged
@@ -134,7 +135,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -161,3 +162,16 @@ CapsuleCollider:
   m_Height: 1.7584763
   m_Direction: 1
   m_Center: {x: -0.03466797, y: 0.10173416, z: 0}
+--- !u!114 &2251142523068572643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d95f2f145eeee45855f7d9cc67be6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5
