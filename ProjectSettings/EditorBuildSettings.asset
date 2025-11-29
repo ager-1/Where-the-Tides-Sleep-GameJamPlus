@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Day_1Afterfishing.unity
     guid: ca3b171eec0cd466c9da35f38f33c464
   - enabled: 1
-    path: Assets/Scenes/Day_2.unity
+    path: Assets/Scenes/Day_2Aftercrafting.unity
     guid: 8e99234aac087184a828e95d871dd1f0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
