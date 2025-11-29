@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 66451637}
   - component: {fileID: 66451636}
   - component: {fileID: 66451635}
+  - component: {fileID: 66451638}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -345,6 +346,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66451633}
   m_CullTransparentMesh: 1
+--- !u!114 &66451638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66451633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d23c369408472c46bc09d2cd3b80cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToScale: {fileID: 66451634}
+  underlineImage: {fileID: 0}
+  scaleAmount: 0.4
+  animationSpeed: 7
+  underlineWidth: 0.5
 --- !u!1 &98048228
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,8 +395,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2078205115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1840,6 +1858,7 @@ GameObject:
   - component: {fileID: 279724485}
   - component: {fileID: 279724484}
   - component: {fileID: 279724483}
+  - component: {fileID: 279724486}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -1973,6 +1992,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279724481}
   m_CullTransparentMesh: 1
+--- !u!114 &279724486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279724481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d23c369408472c46bc09d2cd3b80cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToScale: {fileID: 279724482}
+  underlineImage: {fileID: 0}
+  scaleAmount: 0.4
+  animationSpeed: 7
+  underlineWidth: 0.5
 --- !u!1 &323332159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,8 +2201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.3, y: 3.5511}
-  m_SizeDelta: {x: 93.1626, y: 22.8979}
+  m_AnchoredPosition: {x: 6.6541, y: 3.5511}
+  m_SizeDelta: {x: 99.871, y: 22.8979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340628574
 MonoBehaviour:
@@ -2226,9 +2262,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: 1366 x 768
-      m_Image: {fileID: 0}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: 1280 x 720
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
@@ -2302,7 +2335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &363204720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2599,7 +2632,7 @@ RectTransform:
   m_Father: {fileID: 53101357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2653,6 +2686,7 @@ GameObject:
   - component: {fileID: 572738905}
   - component: {fileID: 572738904}
   - component: {fileID: 572738903}
+  - component: {fileID: 572738906}
   m_Layer: 5
   m_Name: Sail Button (Play)
   m_TagString: Untagged
@@ -2774,6 +2808,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572738901}
   m_CullTransparentMesh: 1
+--- !u!114 &572738906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572738901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d23c369408472c46bc09d2cd3b80cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToScale: {fileID: 572738902}
+  underlineImage: {fileID: 0}
+  scaleAmount: 0.4
+  animationSpeed: 7
+  underlineWidth: 0.5
 --- !u!1 &641599315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,7 +2977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &713452806
 RectTransform:
   m_ObjectHideFlags: 0
