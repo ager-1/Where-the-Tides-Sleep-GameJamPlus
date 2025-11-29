@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq; // Needed for sorting resolutions
+using System.Linq;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,16 +11,14 @@ public class MainMenu : MonoBehaviour
 	public Slider VolumeSlider;
 	public TMP_Dropdown resolutionDropdown;
 
-	private Resolution nativeRes;
+	private Resolution maxRes;
 	private Resolution mediumRes;
 
 	void Start()
 	{
-		// 1. Initialize Volume
 		if (PlayerPrefs.HasKey("soundVolume")) LoadVolume();
 		else { PlayerPrefs.SetFloat("soundVolume", 1); LoadVolume(); }
 
-		// 2. Initialize Modes
 		InitializeModes();
 	}
 
@@ -32,53 +30,45 @@ public class MainMenu : MonoBehaviour
 			return;
 		}
 
-		// Get the desktop/monitor resolution (Native)
-		nativeRes = Screen.currentResolution;
+		// 1. FIND HIGHEST RESOLUTION
+		Resolution[] allResolutions = Screen.resolutions;
+		maxRes = allResolutions.OrderByDescending(x => x.width).First();
 
-		// Calculate the "Medium" resolution (Next valid step down)
-		mediumRes = FindNextLowerResolution(nativeRes);
+		// 2. FIND MEDIUM RESOLUTION
+		mediumRes = FindNextLowerResolution(maxRes, allResolutions);
 
-		// Clear and Populate Dropdown
+		// 3. POPULATE DROPDOWN
 		resolutionDropdown.ClearOptions();
-
-		// Create the 3 specific options with dynamic text
 		List<string> options = new List<string> {
-			$"Fullscreen",
-			$"Windowed",
-			$"Medium"
-		};
-
+			"Fullscreen",       // 0: True Fullscreen (No borders)
+            "Windowed",         // 1: Standard Window with X button (Maximized)
+            "Medium"            // 2: Smaller Standard Window
+        };
 		resolutionDropdown.AddOptions(options);
 
-		// Set the dropdown value based on current state
+		// 4. DETECT CURRENT STATE
 		if (Screen.fullScreenMode == FullScreenMode.ExclusiveFullScreen)
 			resolutionDropdown.value = 0;
-		else if (Screen.fullScreenMode == FullScreenMode.FullScreenWindow)
-			resolutionDropdown.value = 1;
+		else if (Screen.fullScreenMode == FullScreenMode.Windowed && Screen.width > mediumRes.width)
+			resolutionDropdown.value = 1; // Assuming large window is "Windowed"
 		else
-			resolutionDropdown.value = 2; // Assume medium/windowed
+			resolutionDropdown.value = 2; // Assuming smaller window is "Medium"
 
 		resolutionDropdown.RefreshShownValue();
 	}
 
-	Resolution FindNextLowerResolution(Resolution current)
+	Resolution FindNextLowerResolution(Resolution target, Resolution[] allRes)
 	{
-		// 1. Get all supported resolutions from hardware
-		// 2. Filter to remove duplicates (same size, different Hz)
-		// 3. Sort by Width Descending (Big -> Small)
-		var allRes = Screen.resolutions
-			.Select(r => new { r.width, r.height }) // Select only dimensions
-			.Distinct() // Remove duplicates
-			.OrderByDescending(r => r.width) // Sort highest to lowest
+		var sorted = allRes
+			.Select(r => new { r.width, r.height })
+			.Distinct()
+			.OrderByDescending(r => r.width)
 			.ToList();
 
-		// 4. Loop to find the first one smaller than Native
-		foreach (var res in allRes)
+		foreach (var res in sorted)
 		{
-			// If this resolution is smaller than our native one
-			if (res.width < current.width && res.height < current.height)
+			if (res.width < target.width && res.height < target.height)
 			{
-				// Found it! Return as our "Medium" option
 				Resolution r = new Resolution();
 				r.width = res.width;
 				r.height = res.height;
@@ -86,11 +76,9 @@ public class MainMenu : MonoBehaviour
 			}
 		}
 
-		// FALLBACK: If we couldn't find a smaller hardware resolution (rare),
-		// manually create one that is half size.
 		Resolution fallback = new Resolution();
-		fallback.width = current.width / 2;
-		fallback.height = current.height / 2;
+		fallback.width = target.width / 2;
+		fallback.height = target.height / 2;
 		return fallback;
 	}
 
@@ -98,25 +86,28 @@ public class MainMenu : MonoBehaviour
 	{
 		switch (index)
 		{
-			case 0: // Fullscreen
-				Screen.SetResolution(nativeRes.width, nativeRes.height, FullScreenMode.ExclusiveFullScreen);
-				Debug.Log($"Applied: Fullscreen {nativeRes.width}x{nativeRes.height}");
+			case 0: // Fullscreen (Exclusive)
+					// This removes all borders and takes over the screen
+				Screen.SetResolution(maxRes.width, maxRes.height, FullScreenMode.ExclusiveFullScreen);
+				Debug.Log("Applied: Exclusive Fullscreen");
 				break;
 
-			case 1: // Windowed (Maximized / Borderless)
-				Screen.SetResolution(nativeRes.width, nativeRes.height, FullScreenMode.FullScreenWindow);
-				Debug.Log($"Applied: Borderless {nativeRes.width}x{nativeRes.height}");
+			case 1: // Windowed (Maximized with Borders)
+					// We use 'Windowed' mode here so the Title Bar (X button) remains visible.
+					// Note: Sometimes we subtract a tiny bit of height to ensure the bar doesn't go offscreen
+				Screen.SetResolution(maxRes.width, maxRes.height - 20, FullScreenMode.Windowed);
+				Debug.Log("Applied: Standard Windowed (Maximized)");
 				break;
 
-			case 2: // Medium (Windowed)
+			case 2: // Medium (Smaller Window)
 				Screen.SetResolution(mediumRes.width, mediumRes.height, FullScreenMode.Windowed);
-				Debug.Log($"Applied: Medium Windowed {mediumRes.width}x{mediumRes.height}");
+				Debug.Log("Applied: Medium Windowed");
 				break;
 		}
 	}
 
 	// --- BASE LOGIC ---
-	public void StartGame() => SceneManager.LoadScene("Prologue");
+	public void StartGame() => SceneManager.LoadScene("MenuToPrologueTransition");
 	public void ExitGame() => Application.Quit();
 
 	// --- VOLUME LOGIC ---
