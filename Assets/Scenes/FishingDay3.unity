@@ -898,9 +898,9 @@ MonoBehaviour:
   gameOverSceneName: Day_3Afterfishing
   inventory: {fileID: 11400000, guid: 52cd2c0562a9b463ca63e0c4fbd495bf, type: 2}
   currentFish: {fileID: 11400000, guid: 11d18bc8a623f4bd89e7e6a891026262, type: 2}
-  trackArea: {fileID: 0}
-  marker: {fileID: 0}
-  successZone: {fileID: 0}
+  trackArea: {fileID: 579093979}
+  marker: {fileID: 1881258973}
+  successZone: {fileID: 497789476}
   statusText: {fileID: 85853663}
   livesText: {fileID: 594729314}
   onCatch:

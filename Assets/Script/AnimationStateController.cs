@@ -139,6 +139,7 @@ public class AnimationStateController : MonoBehaviour
 		if (shark != null)
 		{
 			Debug.Log("GAME OVER: You ran out of spears and the Shark is still alive.");
+			SceneManager.LoadScene("GameOver");
 
 			// Uncomment this when you are ready to use the scene
 			// SceneManager.LoadScene(gameOverSceneName); 

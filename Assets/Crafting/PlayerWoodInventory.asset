@@ -12,14 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05474b2343a124d2f8e6012610046551, type: 3}
   m_Name: PlayerWoodInventory
   m_EditorClassIdentifier: 
-  collectedWood:
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
-  - {fileID: 11400000, guid: 3c160697c65ea4f6ca256eb70eb972df, type: 2}
+  collectedWood: []
